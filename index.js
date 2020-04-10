@@ -38,10 +38,10 @@ const browse = function (req, res) {
       $(".gategory-item img").each(function () { companiesimages.push(base_url + $(this).attr('src')) });
       console.log(companiesimages)
       var companiescontacts = [];
-      $(".gategory-item .web-btn, .face-btn, .insta-btn, .android-btn, .apple-btn").each(function () { companiescontacts.push(base_url + $(this).attr('href')) });
+      $(".gategory-item .web-btn, .face-btn, .insta-btn, whats-btn, .call-btn,.android-btn, .apple-btn").each(function () { companiescontacts.push(base_url + $(this).attr('href')) });
       console.log(companiescontacts)
       var companiescontactstype = [];
-      $(".gategory-item .web-btn, .face-btn, .insta-btn, .android-btn, .apple-btn").each(function () { companiescontactstype.push($(this).attr('class')) });
+      $(".gategory-item .web-btn, .face-btn, .insta-btn, whats-btn, .call-btn,.android-btn, .apple-btn").each(function () { companiescontactstype.push($(this).attr('class')) });
       console.log(companiescontactstype)
       var companiescontactsname = [];
       $(".gategory-item .web-btn, .face-btn, .insta-btn,.whats-btn, .call-btn,  .android-btn, .apple-btn").each(function () { companiescontactsname.push($(this).text().replace('\n', '')) });
