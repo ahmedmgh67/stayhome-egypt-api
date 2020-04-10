@@ -44,7 +44,7 @@ const browse = function (req, res) {
       $(".gategory-item .web-btn, .face-btn, .insta-btn, .android-btn, .apple-btn").each(function () { companiescontactstype.push($(this).attr('class')) });
       console.log(companiescontactstype)
       var companiescontactsname = [];
-      $(".gategory-item .web-btn, .face-btn, .insta-btn, .android-btn, .apple-btn").each(function () { companiescontactsname.push($(this).text().replace('\n', '')) });
+      $(".gategory-item .web-btn, .face-btn, .insta-btn,.whats-btn, .call-btn,  .android-btn, .apple-btn").each(function () { companiescontactsname.push($(this).text().replace('\n', '')) });
       console.log(companiescontactsname)
       var list = [];
       for (var i = 0; i < companiesnames.length; i++) {
