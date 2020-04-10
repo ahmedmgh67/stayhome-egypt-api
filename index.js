@@ -51,12 +51,8 @@ const browse = function (req, res) {
 
       for (var i = 0; i < companiesnames.length; i++) {
         var companiescontactsnamesl = companiescontactsname.slice(counter, counter + 3)
-        console.log(companiescontactsnamesl)
-        console.log
         var companiescontactsntypesl = companiescontactstype.slice(counter, counter + 3)
-        // console.log(companiescontactsntypesl)
         var companiescontactsl = companiescontacts.slice(counter, counter + 3)
-        // console.log(companiescontactsl)
         var links = []
         for (var j = 0; j < 3; j++) {
           links.push({ name: companiescontactsnamesl[j], type: companiescontactsntypesl[j], link: companiescontactsl[j] })
