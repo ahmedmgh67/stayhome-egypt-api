@@ -1,4 +1,4 @@
-const port = 3333 || process.env.PORT;
+const port = process.env.PORT|| 3333  ;
 const express = require("express")
 const cheerio = require("cheerio")
 const fetch = require('node-fetch')
