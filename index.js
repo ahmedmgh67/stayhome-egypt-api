@@ -1,4 +1,4 @@
-const port = process.env.PORT|| 3333  ;
+const port = process.env.PORT || 3333;
 const express = require("express")
 const cheerio = require("cheerio")
 const fetch = require('node-fetch')
@@ -26,33 +26,44 @@ const feed = function (req, res) {
     });
 }
 const browse = function (req, res) {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   fetch(base_url + "browse" + req.params.id)
     .then(res => res.text())
     .then(body => {
       let $ = cheerio.load(body)
       var companiesnames = [];
       $(".gategory-item h3").each(function () { companiesnames.push($(this).text()) });
-      console.log(companiesnames)
+      // console.log(companiesnames)
       var companiesimages = [];
       $(".gategory-item img").each(function () { companiesimages.push(base_url + $(this).attr('src')) });
-      console.log(companiesimages)
+      // console.log(companiesimages)
       var companiescontacts = [];
-      $(".gategory-item .web-btn, .face-btn, .insta-btn, whats-btn, .call-btn,.android-btn, .apple-btn").each(function () { companiescontacts.push(base_url + $(this).attr('href')) });
-      console.log(companiescontacts)
+      $(".gategory-item .web-btn, .face-btn, .insta-btn,.call-btn,.whats-btn, .android-btn, .apple-btn").each(function () { companiescontacts.push(base_url + $(this).attr('href')) });
+      // console.log(companiescontacts)
       var companiescontactstype = [];
-      $(".gategory-item .web-btn, .face-btn, .insta-btn, whats-btn, .call-btn,.android-btn, .apple-btn").each(function () { companiescontactstype.push($(this).attr('class')) });
-      console.log(companiescontactstype)
+      $(".gategory-item .web-btn, .face-btn, .insta-btn,.call-btn,.whats-btn, .android-btn, .apple-btn").each(function () { companiescontactstype.push($(this).attr('class')) });
+      // console.log(companiescontactstype)
       var companiescontactsname = [];
-      $(".gategory-item .web-btn, .face-btn, .insta-btn,.whats-btn, .call-btn,  .android-btn, .apple-btn").each(function () { companiescontactsname.push($(this).text().replace('\n', '')) });
-      console.log(companiescontactsname)
+      $(".gategory-item .web-btn, .face-btn, .insta-btn,.call-btn,.whats-btn, .android-btn, .apple-btn").each(function () { companiescontactsname.push($(this).text().replace('\n', '')) });
+      // console.log(companiescontactsname)
       var list = [];
+      var counter = 0;
+
       for (var i = 0; i < companiesnames.length; i++) {
+        var companiescontactsnamesl = companiescontactsname.slice(counter, counter + 3)
+        console.log(companiescontactsnamesl)
+        console.log
+        var companiescontactsntypesl = companiescontactstype.slice(counter, counter + 3)
+        // console.log(companiescontactsntypesl)
+        var companiescontactsl = companiescontacts.slice(counter, counter + 3)
+        // console.log(companiescontactsl)
         var links = []
         for (var j = 0; j < 3; j++) {
-          links.push({ name: companiescontactsname[j], type: companiescontactstype[j], link: companiescontacts[j] })
+          links.push({ name: companiescontactsnamesl[j], type: companiescontactsntypesl[j], link: companiescontactsl[j] })
         }
         list.push({ "title": companiesnames[i], "img": companiesimages[i], "links": links })
+        links = []
+        counter += 3
       }
       res.json(list)
     });
